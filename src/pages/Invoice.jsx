@@ -32,8 +32,7 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { rows } from "../Jsons/TableData";
 import { Checkbox } from "@mui/material";
 import Navbar from "../components/Navbar";
-import '../Dayselector.css'
-
+import "../Dayselector.css";
 
 const days = [
   { label: "S", date: 11 },
@@ -51,11 +50,13 @@ function Row(props) {
 
   return (
     <React.Fragment>
-      <TableRow  sx={{
-    "& > *": { borderBottom: "unset" },
-    backgroundColor: open ? "#13255B" : "inherit",
-    color: open ? "white" : "inherit", // optional: make text white when selected
-  }}>
+      <TableRow
+        sx={{
+          "& > *": { borderBottom: "unset" },
+          backgroundColor: open ? "#13255B" : "inherit",
+          color: open ? "white" : "inherit", // optional: make text white when selected
+        }}
+      >
         <TableCell align="right">
           <Checkbox
             color="primary"
@@ -67,19 +68,35 @@ function Row(props) {
           />
         </TableCell>
 
-        <TableCell align="right" sx={{ color: open ? "white" : "inherit" }}>{row.no}</TableCell>
-        <TableCell align="right" sx={{ color: open ? "white" : "inherit" }}>{row.CompanyName}</TableCell>
-        <TableCell align="right" sx={{ color: open ? "white" : "inherit" }}>{row.GST}</TableCell>
-        <TableCell align="right" sx={{ color: open ? "white" : "inherit" }}>{row.OrderID}</TableCell>
-        <TableCell align="right" sx={{ color: open ? "white" : "inherit" }}>{row.Invoice}</TableCell>
-        <TableCell align="right" sx={{ color: open ? "white" : "inherit" }}>{row.date}</TableCell>
-        <TableCell align="right" sx={{ color: open ? "white" : "inherit" }}>${row.amount}</TableCell>
-        <TableCell align="right" sx={{ color: open ? "white" : "inherit" }}>{row.Depart}</TableCell>
+        <TableCell align="right" sx={{ color: open ? "white" : "inherit" }}>
+          {row.no}
+        </TableCell>
+        <TableCell align="right" sx={{ color: open ? "white" : "inherit" }}>
+          {row.CompanyName}
+        </TableCell>
+        <TableCell align="right" sx={{ color: open ? "white" : "inherit" }}>
+          {row.GST}
+        </TableCell>
+        <TableCell align="right" sx={{ color: open ? "white" : "inherit" }}>
+          {row.OrderID}
+        </TableCell>
+        <TableCell align="right" sx={{ color: open ? "white" : "inherit" }}>
+          {row.Invoice}
+        </TableCell>
+        <TableCell align="right" sx={{ color: open ? "white" : "inherit" }}>
+          {row.date}
+        </TableCell>
+        <TableCell align="right" sx={{ color: open ? "white" : "inherit" }}>
+          ${row.amount}
+        </TableCell>
+        <TableCell align="right" sx={{ color: open ? "white" : "inherit" }}>
+          {row.Depart}
+        </TableCell>
       </TableRow>
-      <TableRow >
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0,  }} colSpan={6}>
+      <TableRow>
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
-            <Box sx={{ margin: 1,}} >
+            <Box sx={{ margin: 1 }}>
               <Typography variant="h6" gutterBottom component="div">
                 Remark
               </Typography>
@@ -161,91 +178,98 @@ export default function Invoice() {
   const selectedDay = 14;
   return (
     <Box sx={{ flexGrow: 1, backgroundColor: "#EDF0F4" }}>
-
       <Navbar />
       <div className="container">
-      <div className="container mt-5">
-        <div className="row ms-2">Dashboard - Invoice</div>
-        <div className="row  mt-3 justify-content-between">
-          <div className="col-md-3 h3 ms-2"> Invoice Received</div>
-          <div className="col-md-5">
-            <div className="calendar-container">
-      {days.map((day, index) => {
-        const isSelected = day.date === selectedDay;
-        return (
-          <div key={index} className="day-column">
-            <div className={`day-label ${isSelected ? "selected-top" : ""}`}>
-              {day.label}
+        <div className="container mt-5">
+          <div className="row ms-2">Dashboard - Invoice</div>
+          <div className="row  mt-3 justify-content-between">
+            <div className="col-md-3 h3 ms-2"> Invoice Received</div>
+            <div className="col-md-5">
+              <div className="calendar-container">
+                {days.map((day, index) => {
+                  const isSelected = day.date === selectedDay;
+                  return (
+                    <div key={index} className="day-column">
+                      <div
+                        className={`day-label ${
+                          isSelected ? "selected-top" : ""
+                        }`}
+                      >
+                        {day.label}
+                      </div>
+                      <div
+                        className={`day-number ${
+                          isSelected ? "selected-bottom" : ""
+                        }`}
+                      >
+                        {day.date}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
-            <div className={`day-number ${isSelected ? "selected-bottom" : ""}`}>
-              {day.date}
+          </div>
+          <div className="row mt-4 justify-content-between">
+            <div className="col-5">
+              <span
+                className=" shadow-3 p-2 rounded"
+                style={{ backgroundColor: "white" }}
+              >
+                Approval
+              </span>
+              &nbsp;&nbsp;
+              <span
+                className=" shadow-3 p-2 rounded"
+                style={{ backgroundColor: "#13255B", color: "white" }}
+              >
+                Rejected
+              </span>
+              &nbsp; &nbsp;{" "}
+              <span
+                className=" shadow-3 p-2 rounded"
+                style={{ backgroundColor: "white" }}
+              >
+                Pending
+              </span>
             </div>
-          </div>
-        );
-      })}
-    </div>
-          </div>
-         </div>
-        <div className="row mt-4 justify-content-between">
-          <div className="col-5">
-            <span
-              className=" shadow-3 p-2 rounded"
-              style={{ backgroundColor: "white" }}
-            >
-              Approval
-            </span>
-            &nbsp;&nbsp;
-            <span
-              className=" shadow-3 p-2 rounded"
-              style={{ backgroundColor: "#13255B", color: "white" }}
-            >
-              Rejected
-            </span>
-            &nbsp; &nbsp;{" "}
-            <span
-              className=" shadow-3 p-2 rounded"
-              style={{ backgroundColor: "white" }}
-            >
-              Pending
-            </span>
-          </div>
-          <div className="col-5">
-            <Search>
-              <SearchIconWrapper>
-                <SearchIcon />
-              </SearchIconWrapper>
-              <StyledInputBase
-                placeholder="Search…"
-                inputProps={{ "aria-label": "search" }}
-              />
-            </Search>
+            <div className="col-5">
+              <Search>
+                <SearchIconWrapper>
+                  <SearchIcon />
+                </SearchIconWrapper>
+                <StyledInputBase
+                  placeholder="Search…"
+                  inputProps={{ "aria-label": "search" }}
+                />
+              </Search>
+            </div>
           </div>
         </div>
-      </div>
-      <br></br>
-      <br></br>
-      <TableContainer component={Paper}>
-        <Table aria-label="collapsible table">
-          <TableHead>
-            <TableRow>
-              <TableCell align="right">All</TableCell>
-              <TableCell align="right">NO</TableCell>
-              <TableCell align="right">Company Name</TableCell>
-              <TableCell align="right">GST OR PAN</TableCell>
-              <TableCell align="right">Order ID</TableCell>
-              <TableCell align="right">Invoice ID</TableCell>
-              <TableCell align="right">Issued date</TableCell>
-              <TableCell align="right">Invoice amount</TableCell>
-              <TableCell align="right">Department</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row) => (
-              <Row key={row.name} row={row} />
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+        <br></br>
+        <br></br>
+        <TableContainer component={Paper}>
+          <Table aria-label="collapsible table">
+            <TableHead>
+              <TableRow>
+                <TableCell align="right">All</TableCell>
+                <TableCell align="right">NO</TableCell>
+                <TableCell align="right">Company Name</TableCell>
+                <TableCell align="right">GST OR PAN</TableCell>
+                <TableCell align="right">Order ID</TableCell>
+                <TableCell align="right">Invoice ID</TableCell>
+                <TableCell align="right">Issued date</TableCell>
+                <TableCell align="right">Invoice amount</TableCell>
+                <TableCell align="right">Department</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {rows.map((row) => (
+                <Row key={row.name} row={row} />
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </div>
     </Box>
   );

@@ -11,7 +11,7 @@ import overdue from "../assets/gr.png";
 import paidamount from "../assets/23492.svg";
 import payable from "../assets/noun-pay-2303736.svg";
 import { PieChart, Pie, Cell, Legend, Tooltip } from "recharts";
-import '../Dayselector.css'
+import "../Dayselector.css";
 
 const COLORS1 = [
   "#f06292",
@@ -163,24 +163,32 @@ const Dashboard = () => {
         <div className="row ms-2">Dashboard</div>
         <div className="row mt-3 justify-content-between">
           <div className="col-md-3 h3 ms-2">Dashboard</div>
- <div className="col-md-5">
+          <div className="col-md-5">
             <div className="calendar-container">
-      {days.map((day, index) => {
-        const isSelected = day.date === selectedDay;
-        return (
-          <div key={index} className="day-column">
-            <div className={`day-label ${isSelected ? "selected-top" : ""}`}>
-              {day.label}
+              {days.map((day, index) => {
+                const isSelected = day.date === selectedDay;
+                return (
+                  <div key={index} className="day-column">
+                    <div
+                      className={`day-label ${
+                        isSelected ? "selected-top" : ""
+                      }`}
+                    >
+                      {day.label}
+                    </div>
+                    <div
+                      className={`day-number ${
+                        isSelected ? "selected-bottom" : ""
+                      }`}
+                    >
+                      {day.date}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
-            <div className={`day-number ${isSelected ? "selected-bottom" : ""}`}>
-              {day.date}
-            </div>
           </div>
-        );
-      })}
-    </div>
-          </div>
-          </div>
+        </div>
         <div className="row mt-5 justify-content-between">
           <div className="col-md-3">
             <span
@@ -190,7 +198,6 @@ const Dashboard = () => {
               Over all outstanding $12341233
             </span>
           </div>
-         
         </div>
       </div>
       <div className="container mt-5">
@@ -234,7 +241,10 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      <div className="container mt-5 p-4" style={{ backgroundColor: "#D5E3FF" }}>
+      <div
+        className="container mt-5 p-4"
+        style={{ backgroundColor: "#D5E3FF" }}
+      >
         <div className="row justify-content-between">
           <div className="col-md-4 mt-4">
             <b>Due by Age Summary</b>
